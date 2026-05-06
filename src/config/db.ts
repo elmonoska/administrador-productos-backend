@@ -4,7 +4,13 @@ dotenv.config()
 
 const db = new Sequelize(process.env.DB_URL!, {
     models: [__dirname + '/../models/**/*'],
-    logging: false
+    logging: false,
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        }
+    }
 })
 
 export default db
