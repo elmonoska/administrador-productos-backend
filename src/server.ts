@@ -27,8 +27,7 @@ const server: Express = express()
 // permitir conexiones de cors
 const allowedOrigins = [
   process.env.FRONTEND_URL,
-  'http://localhost:5173',
-  'https://administrador-productos-backend-v34y.onrender.com'
+  process.env.BACKEND_URL,
 ];
 
 const corsOptions: CorsOptions = {
