@@ -1,0 +1,40 @@
+omponents:
+schemas:
+    Product:
+        type: object
+        properties:
+            id:
+                type: integer
+                description: The product id
+                example: 1
+            name:
+                type: string
+                description: The product name
+                example: Monitor curvo de 49 pulgadas
+            price:
+                type: number
+                description: The product price
+                example: 300
+            availability:
+                type: boolean
+                description: The product availability
+                example: true
+
+api/products:
+  post:
+    summary: crea un nuevo producto
+    tags: [Products]
+    description: devuelve el nuevo registro creado
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: Monitor curvo 49 pulgadas
+              price:
+                type: number
+                example: 399        
