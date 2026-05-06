@@ -25,15 +25,25 @@ export async function connectDB() {
 const server: Express = express()
 
 // permitir conexiones de cors
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  'http://localhost:5173',
+  'https://administrador-productos-backend-v34y.onrender.com'
+];
+
 const corsOptions: CorsOptions = {
-    origin: function(origin, callback) {
-        if (origin === process.env.FRONTEND_URL) {
-            callback(null, true)
-        } else {
-            callback(new Error('Error de cors'))
-        }
+  origin: function (origin, callback) {
+
+    // permitir requests sin origin (Postman, navegador directo)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
     }
-}
+
+    return callback(new Error('Error de cors'));
+  }
+};
 
 server.use(cors(corsOptions));
 
